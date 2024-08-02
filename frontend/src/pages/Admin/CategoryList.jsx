@@ -1,4 +1,4 @@
-import {  useState } from 'react'
+import { useState } from 'react'
 import {
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
@@ -12,52 +12,52 @@ import { toast } from 'react-toastify'
 const CategoryList = () => {
   const { data: categories } = useFetchCategoriesQuery()
 
-  const [ name, setName ] = useState('')
-  const [ selectedCategory, setSelectedCategory ] = useState(null)
-  const [ updatingName, setUpdatingName ] = useState('')
-  const [ modalVisible, setModalVisible ] = useState(false)
+  const [name, setName] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [updatingName, setUpdatingName] = useState('')
+  const [modalVisible, setModalVisible] = useState(false)
 
-  const [ createCategory ] = useCreateCategoryMutation()
-  const [ updateCategory ] = useUpdateCategoryMutation()
-  const [ deleteCategory ] = useDeleteCategoryMutation()
+  const [createCategory] = useCreateCategoryMutation()
+  const [updateCategory] = useUpdateCategoryMutation()
+  const [deleteCategory] = useDeleteCategoryMutation()
 
   const handleCreateCategory = async (e) => {
     e.preventDefault()
 
-    if(!name) {
+    if (!name) {
       toast.error('Category name is required')
       return
     }
 
     try {
       const result = await createCategory({ name }).unwrap()
-      if(result.error) {
+      if (result.error) {
         toast.error(result.error)
       } else {
         setName('')
-        toast.success(`${result.name} is created successfully`) 
+        toast.success(`${result.name} is created successfully`)
       }
     } catch (error) {
       console.error(error)
       toast.error('Failed to create category')
     }
   }
-  
+
   const handleUpdateCategory = async (e) => {
     e.preventDefault()
 
-    if(!updatingName) {
+    if (!updatingName) {
       toast.error('Category name is required')
       return
     }
 
     try {
-      const result = await updateCategory({ 
-        categoryId: selectedCategory._id, 
-        updateCategory: { name: updatingName } 
+      const result = await updateCategory({
+        categoryId: selectedCategory._id,
+        updateCategory: { name: updatingName }
       }).unwrap()
 
-      if(result.error) {
+      if (result.error) {
         toast.error(result.error)
       } else {
         toast.success(`${result.name} is updated successfully`)
@@ -72,47 +72,51 @@ const CategoryList = () => {
 
   }
 
-  const handleDeleteCategory = async () => {
-    try {
-      const result = await deleteCategory(selectedCategory._id).unwrap()
+  const handleDeleteCategory = async (e) => {
+    e.preventDefault()
 
-      if(result.error) {
+    try {
+        const result = await deleteCategory({categoryId: selectedCategory._id}).unwrap();
+
+      if (result.error) {
         toast.error(result.error)
       } else {
         toast.success(`${result.name} is deleted successfully`)
         setSelectedCategory(null)
         setModalVisible(false)
       }
-    } catch(error) {
+    } catch (error) {
       console.error(error)
       toast.error('Failed to delete category')
     }
   }
-  
+
   return (
     <div className='ml-[10rem] flex flex-col md:flex-row'>
       <div className="md:w-3/4 p-3">
         <div className="h-12">Manage Categories</div>
-        <CategoryForm 
-          value={ name } 
-          setValue={ setName } 
-          handleSubmit={handleCreateCategory} 
+        <CategoryForm
+          value={name}
+          setValue={setName}
+          handleSubmit={handleCreateCategory}
         />
         <br />
         <hr />
         <div className="flex flex-wrap">
           {categories?.map((category) => (
             <div key={category._id}>
-              <button 
+              <button
                 className="bg-white border border-pink-500 text-pink-500 
                 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 
                 hover:text-white focus:outline-none focus:ring-2 
                 focus:ring-pink-500 focus:ring-opacity-50"
-                onClick={() => {{
-                  setModalVisible(true)
-                  setSelectedCategory(category)
-                  setUpdatingName(category.name)
-                }}}
+                onClick={() => {
+                  {
+                    setModalVisible(true)
+                    setSelectedCategory(category)
+                    setUpdatingName(category.name)
+                  }
+                }}
               >
                 {category.name}
               </button>
