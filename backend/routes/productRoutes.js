@@ -11,9 +11,14 @@ import {
     fetchProduct,
     fetchProductById,
     fetchAllProducts,
-    addProductReview
+    addProductReview,
+    fetchTopProducts,
+    fetchNewProducts
 } from '../controllers/productController.js'
-import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
+import { 
+    authenticate, 
+    authorizeAdmin 
+} from "../middlewares/authMiddleware.js";
 import checkId from "../middlewares/checkId.js"
 
 router
@@ -21,8 +26,16 @@ router
     .get(fetchProduct)
     .post(authenticate, authorizeAdmin, formidable(), addProduct)
 
-router.route('/allproducts').get(fetchAllProducts)
-router.route('/:id/reviews').post(authenticate, authorizeAdmin, addProductReview)
+router
+    .route('/allproducts')
+    .get(fetchAllProducts)
+
+router
+    .route('/:id/reviews')
+    .post(authenticate, authorizeAdmin, checkId, addProductReview)
+
+router.get('/top', fetchTopProducts)
+router.get('/new', fetchNewProducts)
     
 router
     .route('/:id')
