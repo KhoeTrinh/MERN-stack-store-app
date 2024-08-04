@@ -43,22 +43,78 @@ const ProductUpdate = () => {
         }
     }, [productData])
 
+    const uploadFileHandler = async (e) => {
+        const formData = new FormData()
+        formData.append('image', e.target.files[0])
+
+        try {
+            const res = await uploadProductImage(formData).unwrap()
+            toast.success('Item uploaded successfully')
+            setImage(res.image)
+        } catch (error) {
+            toast.error('Error uploading')
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const formData = new FormData()
+            formData.append('image', image)
+            formData.append('name', name)
+            formData.append('description', description)
+            formData.append('price', price)
+            formData.append('category', category)
+            formData.append('quantity', quantity)
+            formData.append('brand', brand)
+            formData.append('countInStock', stock)
+
+            const { data } = await updateProduct({ productId: params._id, formData })
+
+            if (data.error) {
+                toast.error('Failed to update product')
+            } else {
+                toast.success(`${data.name} updated successfully`)
+                navigate(`/admin/allproductslist`)
+            }
+        } catch (error) {
+            console.error(error)
+            toast.error('Failed to update product')
+        }
+    }
+
+    const handleDelete = async () => {
+        try {
+            let answer = window.confirm('Are you sure you want to delete this product?')
+
+            if (!answer) return
+
+            const { data } = await deleteProduct(params._id)
+            toast.success(`Product ${data.name} deleted successfully`)
+            navigate(`/admin/allproductslist`)
+        } catch (error) {
+            console.error(error)
+            toast.error('Failed to delete product')
+        }
+    }
+
     return (
         <div className="container xl:mx-[9rem] sm:mx-[0]">
             <div className="flex flex-col md:flex-row">
                 <AdminMenu />
                 <div className="md:w-3/4 p-3">
-                    <div className="h-12">Create Product</div>
+                    <div className="h-12">Update Product</div>
 
-                    {/* {imageUrl && (
+                    {image && (
                         <div className="text-center">
                             <img
-                                src={imageUrl}
+                                src={image}
                                 alt="product"
                                 className="block mx-auto max-h-[200px]"
                             />
                         </div>
-                    )} */}
+                    )}
 
                     <div className="mb-3">
                         <label className="border px-4 block w-full 
@@ -70,7 +126,7 @@ const ProductUpdate = () => {
                                 type="file"
                                 name="image"
                                 accept="image/*"
-                                // onChange={uploadFileHandler}
+                                onChange={uploadFileHandler}
                                 className={!image ? "hidden" : "text-black"}
                             />
                         </label>
@@ -155,13 +211,22 @@ const ProductUpdate = () => {
                             </div>
                         </div>
 
-                        <button
-                            // onClick={handleSubmit}
-                            className="py-4 px-10 mt-5 rounded-lg text-lg 
+                        <div>
+                            <button
+                                onClick={handleSubmit}
+                                className="py-4 px-10 mt-5 rounded-lg text-lg 
+                            font-bold bg-green-600 text-white mr-6"
+                            >
+                                Update
+                            </button>
+                            <button
+                                onClick={handleDelete}
+                                className="py-4 px-10 mt-5 rounded-lg text-lg 
                             font-bold bg-pink-600 text-white"
-                        >
-                            Submit
-                        </button>
+                            >
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
