@@ -24,6 +24,7 @@ import CategoryList from './pages/Admin/CategoryList.jsx'
 import ProductList from './pages/Admin/ProductList.jsx'
 import AllProducts from './pages/Admin/AllProducts.jsx'
 import ProductUpdate from './pages/Admin/ProductUpdate.jsx'
+import Home from './Home.jsx'
 
 
 const router = createBrowserRouter(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />} >
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
+      <Route index={true} path='/' element={<Home />} />
 
       <Route path='' element={<PrivateRoute />} >
         <Route path='/profile' element={<Profile />} />
