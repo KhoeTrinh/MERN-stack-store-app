@@ -32,7 +32,7 @@ router
 
 router
     .route('/:id/reviews')
-    .post(authenticate, authorizeAdmin, checkId, addProductReview)
+    .post(authenticate, checkId, addProductReview)
 
 router.get('/top', fetchTopProducts)
 router.get('/new', fetchNewProducts)
