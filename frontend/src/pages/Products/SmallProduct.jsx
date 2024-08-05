@@ -7,13 +7,13 @@ const SmallProduct = ({ product }) => {
                 <img
                     src={product.image}
                     alt={product.name}
-                    className='rounded h-[15rem] w-full'
+                    className='rounded h-[15rem] w-full object-none m-3'
                 />
                 {/* <HeartIcon product={product} /> */}
 
                 <div className="p-54">
                     <Link to={`/product/${product._id}`}>
-                        <h2 className="fle justify-between items-center">
+                        <h2 className="flex justify-between items-center">
                             <div>{product.name}</div>
                             <span
                                 className="bg-pink-100 text-pink-800 

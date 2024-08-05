@@ -117,9 +117,7 @@ const ProductUpdate = () => {
                     )}
 
                     <div className="mb-3">
-                        <label className={!image 
-                            ? "border px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11" 
-                            : "block w-full text-center py-4"}
+                        <label className="block w-full text-center py-4"
                         >
                             {image ? image.name : "Upload Image"}
 

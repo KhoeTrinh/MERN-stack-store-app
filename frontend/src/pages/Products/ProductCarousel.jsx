@@ -7,7 +7,7 @@ import moment from 'moment'
 import {
     FaBox,
     FaClock,
-    FaShopify,
+    FaShoppingCart,
     FaStar,
     FaStore
 } from 'react-icons/fa'
@@ -59,16 +59,37 @@ const ProductCarousel = () => {
                                     h-[30rem]" 
                                 />
 
-                                <div className="flex justify-between w-[20rem]">
+                                <div className="flex justify-between w-[17rem]">
                                     <div className="one">
-                                        <h2>{name}</h2>
-                                        <p>$ {price}</p>
-                                        <p className="w-[20rem]">{description.substring(0, 170)}...</p>
+                                        <h1 className="font-bold">{name}</h1>
+                                        <p className="font-semibold">💵 $ {price}</p> <br /> <br />
+                                        <p className="w-[17rem]">👉 {description.substring(0, 170)}...</p>
                                     </div>
                                     <div className="flex justify-between w-[20rem]">
                                         <div className="one">
-                                            <h1 className="flex items-center mb-6">
+                                            <h1 className="flex items-center mb-6 w-[10rem]">
                                                 <FaStore className="mr-2" /> Brand: {brand}
+                                            </h1>
+                                            <h1 className="flex items-center mb-6 w-[15rem]">
+                                                <FaClock className="mr-2" /> Added: {''}
+                                                    {moment(createdAt).fromNow()}
+                                            </h1>
+                                            <h1 className="flex items-center mb-6 w-[10rem]">
+                                                <FaStar className="mr-2" /> Reviews: {numReviews}
+                                            </h1>
+                                        </div>
+                                        <div className="two">
+                                            <h1 className="flex items-center mb-6 w-[10rem]">
+                                                <FaStar className="mr-2" /> Ratings: {' '} 
+                                                    {Math.round(rating)}
+                                            </h1>
+                                            <h1 className="flex items-center mb-6 w-[10rem]">
+                                                <FaShoppingCart className="mr-2" /> Quantity: {' '} 
+                                                    {quantity}
+                                            </h1>
+                                            <h1 className="flex items-center mb-6 w-[10rem]">
+                                                <FaBox className="mr-2" /> In Stock: {' '} 
+                                                    {countInStock}
                                             </h1>
                                         </div>
                                     </div>
