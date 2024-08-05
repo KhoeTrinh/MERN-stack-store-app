@@ -47,8 +47,8 @@ const ProductDetails = () => {
 
         try {
             await createReview({
-                productId, 
-                rating, 
+                productId,
+                rating,
                 comment
             }).unwrap()
             refetch()
@@ -80,67 +80,86 @@ const ProductDetails = () => {
                     ) : (
                         <>
                             <div className="flex flex-wrap relative 
-                    items-between mt-[2rem] ml-[10rem]"
+                            items-between mt-[2rem] xl:flex-row 
+                            lg:flex-row md:flex-col xl:ml-[12rem] lg:ml-[0rem] 
+                            md:ml-[10rem] sm:ml-[4rem]"
                             >
                                 <div>
                                     <img
                                         src={product.image}
                                         alt={product.name}
-                                        className='w-full xl:w-[40rem] 
-                                lg:w-[30rem] md:w-[20rem] 
-                                sm:w-[10rem] mr-[2rem]'
+                                        className='w-full xl:w-[30rem] 
+                                lg:w-[26rem] md:w-[30rem] 
+                                sm:w-[30rem] mr-[2rem] xl:ml-[0rem] lg:ml-[10rem] 
+                                md:ml-[5rem] sm:ml-[4rem] xl:mb-0 lg:mb-0 
+                                md:mb-[2rem] sm:mb-[2rem]'
                                     />
 
                                     <HeartIcon product={product} />
                                 </div>
 
                                 <div
-                                    className="flex flex-col justify-between"
+                                    className="flex flex-col justify-between xl:w-[30rem] 
+                                    lg:w-[25rem] md:w-[30rem] sm:w-[25rem]"
                                 >
-                                    <h2 className='text-2xl font-semibold'>
+                                    <h2 className='xl:text-2xl lg:text-xl md:text-2xl 
+                                    sm:text-3xl font-semibold'>
                                         {product.name}
                                     </h2>
-                                    <p className="my-4 xl:[35rem] lg:w-[35rem] 
-                            md:w-[30rem]"
+                                    <p className="my-4 xl:[35rem] lg:w-[25rem] 
+                                    md:w-[25rem] sm:w-[25rem]"
                                     >
                                         {product.description}
                                     </p>
-                                    <p className="text-5xl my-4 font-extrabold">
+                                    <p className="xl:text-5xl lg:text-2xl md:text-4xl 
+                                    sm:text-4xl my-4 font-extrabold">
                                         $ {product.price}
                                     </p>
                                     <div
                                         className="flex items-center justify-between 
-                                w-[20rem]"
+                                        xl:w-[20rem] lg:w-[20rem] md:w-[25rem] md:w-[25rem]"
                                     >
                                         <div className="one">
-                                            <h1 className="flex items-center mb-6">
+                                            <h1 className="flex items-center mb-6 
+                                            xl:text-md lg:text-md md:text-lg sm:text-lg"
+                                            >
                                                 <FaStore className='mr-2' />
                                                 Brand: {' '}
                                                 {product.brand}
                                             </h1>
-                                            <h1 className="flex items-center mb-6">
+                                            <h1 className="flex items-center mb-6 
+                                            xl:text-md lg:text-md md:text-lg sm:text-lg"
+                                            >
                                                 <FaClock className='mr-2' />
                                                 Added: {' '}
                                                 {moment(product.createdAt).fromNow()}
                                             </h1>
-                                            <h1 className="flex items-center mb-6">
+                                            <h1 className="flex items-center mb-6 
+                                            xl:text-md lg:text-md md:text-lg sm:text-lg"
+                                            >
                                                 <FaStore className='mr-2' />
                                                 Reviews: {' '}
                                                 {product.numReviews}
                                             </h1>
                                         </div>
                                         <div className="two">
-                                            <h1 className="flex items-center mb-6">
+                                            <h1 className="flex items-center mb-6 
+                                            xl:text-md lg:text-md md:text-lg sm:text-lg"
+                                            >
                                                 <FaStar className='mr-2' />
                                                 Ratings: {' '}
                                                 {Math.round(product.rating)}
                                             </h1>
-                                            <h1 className="flex items-center mb-6">
+                                            <h1 className="flex items-center mb-6 
+                                            xl:text-md lg:text-md md:text-lg sm:text-lg"
+                                            >
                                                 <FaShoppingCart className='mr-2' />
                                                 Quantity: {' '}
                                                 {product.quantity}
                                             </h1>
-                                            <h1 className="flex items-center mb-6">
+                                            <h1 className="flex items-center mb-6 
+                                            xl:text-md lg:text-md md:text-lg sm:text-lg"
+                                            >
                                                 <FaBox className='mr-2' />
                                                 In Stock: {' '}
                                                 {product.countInStock}
@@ -152,7 +171,7 @@ const ProductDetails = () => {
                                         <Ratings
                                             value={product.rating}
                                             text={`${product.numReviews} reviews`}
-                                            color='yellow-500' 
+                                            color='yellow-500'
                                         />
                                         {product.countInStock > 0 && (
                                             <div>
@@ -187,8 +206,10 @@ const ProductDetails = () => {
                                 </div>
 
                                 <div
-                                    className="mt-[5rem] container flex flex-wrap 
-                            items-start justify-between ml-[10rem]"
+                                    className="xl:mt-[4rem] lg:mt-[2rem] md:mt-[2rem] 
+                                    sm:mt-[1rem] container flex flex-wrap items-start 
+                                    justify-between xl:ml-[6rem] lg:ml-[7rem] md:ml-0 
+                                    sm:ml-[7rem]"
                                 >
                                     <ProductTabs
                                         loadingProductReview={loadingProductReview}

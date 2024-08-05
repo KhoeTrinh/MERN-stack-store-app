@@ -32,10 +32,10 @@ const ProductTabs = ({
 
     return (
         <div className='flex flex-col md:flex-row'>
-            <section className='mr-[5rem]'>
+            <section className='xl:mr-[5rem] lg:mr-[0rem]'>
                 <div
                     className={`flex-1 p-4 cursor-pointer 
-                    text-lg ${activeTab === 1
+                    text-lg w-[12rem] ${activeTab === 1
                             ? 'font-bold'
                             : ''
                         }`}
@@ -45,7 +45,7 @@ const ProductTabs = ({
                 </div>
                 <div
                     className={`flex-1 p-4 cursor-pointer 
-                    text-lg ${activeTab === 2
+                    text-lg w-[12rem] ${activeTab === 2
                             ? 'font-bold'
                             : ''
                         }`}
@@ -55,7 +55,7 @@ const ProductTabs = ({
                 </div>
                 <div
                     className={`flex-1 p-4 cursor-pointer 
-                    text-lg ${activeTab === 3
+                    text-lg w-[12rem] ${activeTab === 3
                             ? 'font-bold'
                             : ''
                         }`}
@@ -86,7 +86,8 @@ const ProductTabs = ({
                                             e => setRating(e.target.value)
                                         }
                                         className='p-2 border rounded-lg 
-                                        xl:w-[40rem] text-black'
+                                        xl:w-[40rem] lg:w-[35rem] 
+                                        md:w-[24rem] sm:w-[25rem] text-black'
                                     >
                                         <option value="">
                                             Select a rating
@@ -123,6 +124,7 @@ const ProductTabs = ({
                                         value={comment}
                                         onChange={e => setComment(e.target.value)}
                                         className='p-2 border rounded-lg xl:w-[40rem] 
+                                        lg:w-[35rem] md:w-[24rem] sm:w-[25rem]
                                         text-black'
                                     />
                                 </div>
@@ -160,8 +162,9 @@ const ProductTabs = ({
                                 <div 
                                     key={review._id} 
                                     className='bg-gray-100 p-4 rounded-lg 
-                                    xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] 
-                                    sm:w-[24rem] mb-5'
+                                    xl:ml-[2rem] lg:ml-[6rem] md:ml-[3rem] 
+                                    sm:ml-[0rem] xl:w-[35rem] lg:w-[35rem] 
+                                    md:w-[25rem] sm:w-[24rem] mb-5'
                                 >
                                     <div className="flex justify-between">
                                         <strong>
@@ -182,13 +185,13 @@ const ProductTabs = ({
             </section>
             <section>
                 {activeTab === 3 && (
-                    <section className='ml-[4rem] flex flex-wrap'>
+                    <section className='flex flex-wrap'>
                         {!data ? (
                             <Loader />
                         ) : (
                             data.map((product) => (
                                 <div key={product._id}>
-                                    <SmallProduct product={product} />
+                                    <SmallProduct product={product}/>
                                 </div>
                             ))
                         )}
