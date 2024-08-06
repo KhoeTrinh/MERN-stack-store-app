@@ -153,14 +153,14 @@ const ProductTabs = ({
                     <>
                         <div>
                             {
-                                product.reviews.length === 0 
+                                product.reviews.length === 0
                                 && <p>No Reviews</p>
                             }
                         </div>
                         <div>
                             {product.reviews.map((review) => (
-                                <div 
-                                    key={review._id} 
+                                <div
+                                    key={review._id}
                                     className='bg-gray-100 p-4 rounded-lg 
                                     xl:ml-[2rem] lg:ml-[6rem] md:ml-[3rem] 
                                     sm:ml-[0rem] xl:w-[35rem] lg:w-[35rem] 
@@ -191,7 +191,7 @@ const ProductTabs = ({
                         ) : (
                             data.map((product) => (
                                 <div key={product._id}>
-                                    <SmallProduct product={product}/>
+                                    <SmallProduct product={product} />
                                 </div>
                             ))
                         )}
