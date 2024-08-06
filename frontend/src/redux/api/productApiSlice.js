@@ -92,10 +92,10 @@ export const productApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-    useGetProductsQuery,
     useGetProductByIdQuery,
-    useAllProductsQuery,
+    useGetProductsQuery,
     useGetProductDetailsQuery,
+    useAllProductsQuery,
     useCreateProductMutation,
     useUpdateProductMutation,
     useDeleteProductMutation,
