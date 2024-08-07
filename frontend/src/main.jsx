@@ -16,6 +16,8 @@ import Register from './pages/Auth/Register.jsx'
 
 // User
 import Profile from './pages/User/Profile.jsx'
+import Shipping from './pages/Order/Shipping.jsx'
+import PlaceOrder from './pages/Order/PlaceOrder.jsx'
 
 // Admin
 import AdminRoute from './pages/Admin/AdminRoute.jsx'
@@ -43,6 +45,8 @@ const router = createBrowserRouter(
 
       <Route path='' element={<PrivateRoute />} >
         <Route path='/profile' element={<Profile />} />
+        <Route path='/shipping' element={<Shipping />} />
+        <Route path='/placeorder' element={<PlaceOrder />} />
       </Route>
 
       <Route path='/admin' element={<AdminRoute />}>
