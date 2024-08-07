@@ -73,7 +73,7 @@ const PlaceOrder = () => {
                     </td>
 
                     <td className="p-2">
-                      <Link to={`/product/${item.product}`}>{item.name}</Link>
+                      <Link to={`/product/${item._id}`}>{item.name}</Link>
                     </td>
                     <td className="p-2">{item.qty}</td>
                     <td className="p-2">{item.price.toFixed(2)}</td>
