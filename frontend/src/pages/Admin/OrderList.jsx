@@ -56,7 +56,7 @@ const OrderList = () => {
                                                     .image
                                             }
                                             alt={order._id}
-                                            className='w-[5rem] pt-4'
+                                            className='w-[5rem] h-[5rem] object-cover'
                                         />
                                     </div>
                                 </td>
