@@ -25,6 +25,8 @@ const Order = () => {
         error,
     } = useGetOrderDetailsQuery(orderId);
 
+    console.log(order)
+
     const [payOrder, { isLoading: loadingPay }] =
         usePayOrderMutation();
     const [deliverOrder, { isLoading: loadingDeliver }] =
@@ -228,7 +230,7 @@ const Order = () => {
                 </h2>
                 <div className='flex justify-between mb-2'>
                     <span>Items</span>
-                    <span>$ {order.itemsPrice}</span>
+                    <span>$ {order.itemPrice}</span>
                 </div>
                 <div className='flex justify-between mb-2'>
                     <span>Shipping</span>

@@ -127,31 +127,27 @@ const Shop = () => {
                         </h2>
 
                         <div className='p-5'>
-                            {uniqueBrands?.map((brand) => (
-                                <>
-                                    <div className='flex items-center mr-4 mb-5'>
-                                        <input
-                                            type='radio'
-                                            id={brand}
-                                            name='brand'
-                                            onChange={() =>
-                                                handleBrandClick(
-                                                    brand
-                                                )
-                                            }
-                                            className='w-4 h-4 text-pink-600 
+                            {uniqueBrands?.map((brand, index) => (
+                                <div key={index} className='flex items-center mr-4 mb-5'>
+                                    <input
+                                        type='radio'
+                                        id={brand}
+                                        name='brand'
+                                        onChange={() =>
+                                            handleBrandClick(brand)
+                                        }
+                                        className='w-4 h-4 text-pink-600 
                                             bg-gray-100 border-gray-300 
                                             focus:ring-pink-500 dark:focus:ring-pink-600 
                                             dark:ring-offset-gray-800 focus:ring-2 
                                             dark:bg-gray-700 dark:border-gray-600'
-                                        />
-                                        <label
-                                            htmlFor='pink-radio'
-                                            className='ml-2 text-sm font-medium'>
-                                            {brand}
-                                        </label>
-                                    </div>
-                                </>
+                                    />
+                                    <label
+                                        htmlFor='pink-radio'
+                                        className='ml-2 text-sm font-medium'>
+                                        {brand}
+                                    </label>
+                                </div>
                             ))}
                         </div>
 
@@ -185,12 +181,14 @@ const Shop = () => {
                         <h2 className='h4 text-center mb-2'>
                             {products?.length} Products
                         </h2>
-                        <div className="flex flex-wrap">
+                        <div className='flex flex-wrap'>
                             {products.length === 0 ? (
                                 <Loader />
                             ) : (
                                 products?.map((p) => (
-                                    <div className="p-3" key={p._id}>
+                                    <div
+                                        className='p-3'
+                                        key={p._id}>
                                         <ProductCard p={p} />
                                     </div>
                                 ))
